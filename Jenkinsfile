@@ -29,5 +29,15 @@ pipeline {
                 sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd/target/*.war /opt/apache*/webapps/'
             }
         }
+
+        stage('Master Branch Job') {
+        when {
+            branch 'master'
+        }
+        steps {
+            echo 'deploy the artifactories into the master environments'
+                sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd_master/target/*.war /opt/apache*/webapps/'
+        }
+    }
     }
 }
