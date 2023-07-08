@@ -3,7 +3,7 @@ pipeline {
   label 'slave1'
 }
 
-   // stages {
+    stages {
     //    stage('Git checkout') {
       //      steps {
       //          echo 'We are now checking out the git repository'
@@ -49,5 +49,5 @@ pipeline {
                 sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd_master/target/*.war /opt/apache*/webapps/'
         }
     }
-    }
+  }
 }
