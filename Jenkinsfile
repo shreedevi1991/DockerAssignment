@@ -3,37 +3,47 @@ pipeline {
   label 'slave1'
 }
 
-    stages {
-        stage('Git checkout') {
-            steps {
-                echo 'We are now checking out the git repository'
-                git 'https://github.com/rohith-marigowda/javaProject.git'
-            }
-        }
-        stage('Build project') {
-            steps {
-                echo 'Build the above code using maven'
-                sh 'mvn clean install'
-            }
-        }
-        stage('Push artifactory') {
-            steps {
-                echo 'Once the package is created using build tools, push the artifactory to nexus or jfrogg'
-                echo 'Note: We are not pushing any of our artifacts into maven remote repository'
-            }
-        }
+   // stages {
+    //    stage('Git checkout') {
+      //      steps {
+      //          echo 'We are now checking out the git repository'
+      //          git 'https://github.com/rohith-marigowda/javaProject.git'
+     //       }
+    //    }
+    //    stage('Build project') {
+      //      steps {
+      //          echo 'Build the above code using maven'
+       //         sh 'mvn clean install'
+      //      }
+      //  }
+      //  stage('Push artifactory') {
+         //   steps {
+           //     echo 'Once the package is created using build tools, push the artifactory to nexus or jfrogg'
+           //     echo 'Note: We are not pushing any of our artifacts into maven remote repository'
+        //    }
+       // }
         
-        stage('Deploy') {
-            steps {
-                echo 'deploy the artifactories into the environments'
-                sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd/target/*.war /opt/apache*/webapps/'
-            }
-        }
+        //stage('Deploy') {
+            //steps {
+               // echo 'deploy the artifactories into the environments'
+              //  sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd/target/*.war /opt/apache*/webapps/'
+           // }
+       // }
 
         stage('Master Branch Job') {
         when {
             branch 'master'
         }
+            steps {
+                echo 'We are now checking out the git repository'
+                git 'https://github.com/rohith-marigowda/javaProject.git'
+            }
+
+            steps {
+               echo 'Build the above code using maven'
+                sh 'mvn clean install'
+            }
+
         steps {
             echo 'deploy the artifactories into the master environments'
                 sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd_master/target/*.war /opt/apache*/webapps/'
