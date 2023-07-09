@@ -1,8 +1,5 @@
 pipeline {
-    agent {
-  label 'slave1'
-}
-
+    agent any
     stages {
         stage('Git checkout') {
             steps {
@@ -26,7 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'deploy the artifactories into the environments'
-                sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd_master/target/*.war /opt/apache*/webapps/'
+                sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd/target/.war /opt/apache/webapps/'
             }
         }
     }
