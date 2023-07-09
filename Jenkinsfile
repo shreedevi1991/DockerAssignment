@@ -23,6 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'deploy the artifactories into the environments'
+                sh 'sudo su'
                 sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd_release_2.0/target/*.war /opt/apache-tomcat-9.*/webapps/'
             }
         }
