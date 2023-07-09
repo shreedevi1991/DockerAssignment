@@ -4,13 +4,13 @@ pipeline {
         stage('Git checkout') {
             steps {
                 echo 'We are now checking out the git repository'
-                git 'https://github.com/rohith-marigowda/javaProject.git'
+                git 'https://github.com/rohith-marigowda/javaProject.git' 
             }
         }
         stage('Build project') {
             steps {
                 echo 'Build the above code using maven'
-                sh 'mvn clean install'
+                sh 'mvn clean install' 
             }
         }
         stage('Push artifactory') {
@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'deploy the artifactories into the environments'
-                sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd/target/.war /opt/apache/webapps/'
+                sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd_release_2.0/target/*.war /opt/apache-tomcat-9.*/webapps/'
             }
         }
     }
