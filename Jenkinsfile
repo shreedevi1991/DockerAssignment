@@ -10,7 +10,7 @@ pipeline {
         stage('Build project') {
             steps {
                 echo 'Build the above code using maven'
-                sh 'mvn clean install'
+                sh 'mvn clean install' 
             }
         }
         stage('Push artifactory') {
