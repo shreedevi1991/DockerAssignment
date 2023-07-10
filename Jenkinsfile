@@ -40,7 +40,7 @@ pipeline {
                 branch "release/*"
             }
             steps {
-                echo 'deploy the artifactories into the environments'
+                echo 'deploy the artifactories into the release branch environments'
                 sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd_release_2.0/target/*.war /opt/apache-tomcat-9.*/webapps/' 
             }
         }
