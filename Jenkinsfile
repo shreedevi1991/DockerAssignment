@@ -20,11 +20,28 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
+        //stage('Deploy') {
+            //steps {
+                //echo 'deploy the artifactories into the environments'
+               // sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd_master/target/*.war /opt/apache-tomcat-9.*/webapps/' 
+           // }
+       // }
+        stage('Deploy to master') {
+            when {
+                branch "master"
+            }
             steps {
                 echo 'deploy the artifactories into the environments'
-                sh 'sudo su'
-                sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd_release_2.0/target/*.war /opt/apache-tomcat-9.*/webapps/'
+                sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd_master/target/*.war /opt/apache-tomcat-9.*/webapps/' 
+            }
+        }
+        stage('Deploy to release branch') {
+            when {
+                branch "release/*"
+            }
+            steps {
+                echo 'deploy the artifactories into the environments'
+                sh 'sudo cp /home/ec2-user/jenkins/workspace/cicd_release_2.0/target/*.war /opt/apache-tomcat-9.*/webapps/' 
             }
         }
     }
