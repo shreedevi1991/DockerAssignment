@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy
+  name: image-dep
 spec:
-  replicas : 2
+  replicas: 3
   selector:
     matchLabels:
       app: myapp
-template:
+  template:
     metadata:
-      name: demo-dep
+      name: myapp
       labels:
-        app: myapp      
+        app: myapp
     spec:
       containers:
-      - name: assignment-container
+      - name: myapp-container
         image: assignment:0.1
         ports:
-        - containerPort: 80
+        - containerPort: 80 
