@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: myapp-container
-        image: assignment:0.1
+        image: shreekulkarni/assignment:0.1
         ports:
         - containerPort: 80 
